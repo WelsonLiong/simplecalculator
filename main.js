@@ -91,20 +91,34 @@ function CleanOutput(output) {
         return exponentNotation;
     }
 
-    let output_array = output_string.split("");
+	if (output_string.charAt(0) === '-') {
+        let negativePart = output_string.slice(1);
+        let output_array = negativePart.split("");
 
-    if (output_array.length > 3) {
-        for (let i = output_array.length - 3; i > 0; i -= 3) {
-            output_array.splice(i, 0, ",");
+        if (output_array.length > 3) {
+            for (let i = output_array.length - 3; i > 0; i -= 3) {
+                output_array.splice(i, 0, ",");
+            }
         }
+
+        output_string = '-' + output_array.join("");
+    } else {
+        let output_array = output_string.split("");
+
+        if (output_array.length > 3) {
+            for (let i = output_array.length - 3; i > 0; i -= 3) {
+                output_array.splice(i, 0, ",");
+            }
+        }
+
+        output_string = output_array.join("");
     }
 
     if (decimal) {
-        output_array.push(".");
-        output_array.push(decimal);
+        output_string += "." + decimal;
     }
 
-    return output_array.join("");
+    return output_string;
 }
 
 function ValidateInput (value) {
