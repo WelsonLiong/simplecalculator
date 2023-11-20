@@ -144,10 +144,6 @@ function PrepareInput(input) {
     // Replace percentages with their decimal equivalent
     let preparedInput = input.replace(/%/g, "/100");
 
-    // Replace brackets with the multiplication operator when necessary
-    preparedInput = input.replace(/\(/g, "*(");
-    preparedInput = input.replace(/\)([\d(])/g, ")*$1");
-
     // Split the input into individual tokens
     let tokens = preparedInput.match(/(\d+\.\d+|\d+|\S)/g) || [];
 
